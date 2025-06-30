@@ -38,7 +38,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/register", "/api/users", "/api/login", "/api/foods/**", "/api/cart/**", "/api/orders/all", "/api/orders/status/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
@@ -62,7 +62,7 @@ public class SecurityConfig {
 
     private UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("https://eatmeow-admin-ui-iyzs.vercel.app/", "https://eatmeow-client-ui.vercel.app/"));
+        config.setAllowedOrigins(List.of("https://eatmeow-admin-ui.vercel.app/", "https://eatmeow-client-ui.vercel.app/"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
